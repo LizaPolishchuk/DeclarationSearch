@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_between_bounds_15">15dp</dimen>
+    <dimen name="margin_between_bounds_5">10dp</dimen>
+    <dimen name="margin_between_text_in_item_10">10dp</dimen>
+    <dimen name="margin_left_of_bounds_5">5dp</dimen>
+    <dimen name="text_size_notifications_25">25sp</dimen>
+    <dimen name="text_size_in_item_of_list_25">25sp</dimen>
+</resources>

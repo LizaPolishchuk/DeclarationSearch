@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/margin_between_bounds_5" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_left_of_bounds_5"
+                android:text="@string/full_name" android:textSize="@dimen/text_size_in_item_of_list_25"
+                android:layout_marginStart="@dimen/margin_left_of_bounds_5" />
+            <TextView
+                android:id="@+id/tv_lastname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/text_name"
+                android:layout_marginLeft="@dimen/margin_between_text_in_item_10"
+                android:textSize="@dimen/text_size_in_item_of_list_25"
+                android:layout_toEndOf="@id/text_name"
+                android:layout_marginStart="@dimen/margin_between_text_in_item_10" />
+            <TextView
+                android:id="@+id/tv_firstname"
+                android:textSize="@dimen/text_size_in_item_of_list_25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/text_name"
+                android:layout_marginLeft="@dimen/margin_between_text_in_item_10"
+                android:layout_marginStart="@dimen/margin_between_text_in_item_10"
+                android:layout_toEndOf="@id/text_name"
+                android:layout_below="@id/tv_lastname"/>
+            <TextView
+                android:id="@+id/text_work"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_in_item_of_list_25"
+                android:text="@string/place_of_work"
+                android:layout_marginLeft="@dimen/margin_left_of_bounds_5"
+                android:layout_below="@id/tv_firstname"/>
+            <TextView
+                android:id="@+id/tv_place_of_work"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_firstname"
+                android:layout_marginLeft="@dimen/margin_between_text_in_item_10"
+                android:textSize="@dimen/text_size_in_item_of_list_25"
+                android:layout_toRightOf="@id/text_work"
+                android:layout_marginStart="@dimen/margin_between_text_in_item_10"
+                android:layout_toEndOf="@id/text_work" />
+            <TextView
+                android:id="@+id/text_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/position"
+                android:textSize="@dimen/text_size_in_item_of_list_25"
+                android:layout_marginLeft="@dimen/margin_left_of_bounds_5"
+                android:layout_below="@id/tv_place_of_work"/>
+            <TextView
+                android:id="@+id/tv_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_place_of_work"
+                android:layout_marginLeft="@dimen/margin_between_text_in_item_10"
+                android:textSize="@dimen/text_size_in_item_of_list_25"
+                android:layout_toRightOf="@id/text_position"
+                android:layout_marginStart="@dimen/margin_between_text_in_item_10"
+                android:layout_toEndOf="@id/text_position" />
+            <ImageButton
+                android:id="@+id/btn_link"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_toLeftOf="@id/btn_star"
+                android:layout_below="@id/tv_position"
+                android:layout_margin="@dimen/margin_between_bounds_5"
+                android:background="@drawable/ic_pdf"
+                android:contentDescription="@string/btn_show_pdf"
+                android:layout_toStartOf="@id/btn_star" />
+            <ImageButton
+                android:id="@+id/btn_star"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/tv_position"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/ic_star"
+                android:layout_margin="@dimen/margin_between_bounds_5"
+
+                android:contentDescription="@string/btn_add_to_favorites"
+                android:layout_alignParentEnd="true" />
+            <TextView
+                android:id="@+id/text_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_comment"
+                android:layout_below="@id/btn_link"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/tv_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_link"
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/margin_between_text_in_item_10"
+                android:layout_toRightOf="@id/text_comment"
+                android:layout_toEndOf="@id/text_comment"
+                android:layout_marginStart="@dimen/margin_between_text_in_item_10" />
+        </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

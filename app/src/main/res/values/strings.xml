@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Пошук декларацій</string>
+    <string name="no_connection">Немає доступу до Інтернету, перевірте налаштування та повторіть запит</string>
+    <string name="no_data">Вибачте, по вашому запросу не знайдено результатів…</string>
+    <string name="search">Введіть запит для пошуку</string>
+    <string name="find">Пошук</string>
+    <string name="full_name">Повне ім\'я:</string>
+    <string name="place_of_work">Місце роботи:</string>
+    <string name="position">Посада:</string>
+    <string name="btn_show_pdf">При натисненні цієї кнопки відкриється PDF файл з повною інформацією</string>
+    <string name="btn_add_to_favorites">При натисненні цієї кнопки декларація додасться до списку обраних</string>
+    <string name="favorites">Список обраних</string>
+    <string name="list_is_empty">Поки що немає обраних</string>
+    <string name="add_the_comment">Ви можете коментар до обраної декларації:</string>
+    <string name="comment">Введіть коментар</string>
+    <string name="text_comment">Коментар:</string>
+</resources>
