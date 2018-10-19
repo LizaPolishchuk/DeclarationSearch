@@ -8,51 +8,79 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.android.declarationsapp.R;
+import com.example.android.declarationsapp.data.Person;
 
 public class MyOnClickListener implements View.OnClickListener {
     private Context context;
-    private String firstname,  lastname,  placeOfWork,  position;
+    private Person person;
     private String link, comment;
 
-    public MyOnClickListener(Context context, String firstname, String lastname, String placeOfWork, String position){
+    /**
+     * Constructor, if you click the add to favorites button
+     */
+    public MyOnClickListener(Context context, Person person) {
         this.context = context;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.placeOfWork = placeOfWork;
-        this.position = position;
+        this.person = person;
     }
-    public MyOnClickListener(Context context, String link){
+
+    /**
+     * Constructor, if you click the download PDF button
+     */
+    public MyOnClickListener(Context context, String link) {
         this.context = context;
         this.link = link;
     }
+
+    /**
+     * AlertDialog for adding comment to the declaration
+     */
+    public static AlertDialog.Builder getAlertDialogBuilder(Context context) {
+        final View itemView = LayoutInflater.from(context).inflate(R.layout.dialog_layout, null, false);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setView(itemView)
+                .setPositiveButton("Додати", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                })
+                .setNeutralButton("Відміна", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+        return builder;
+    }
+
     @Override
     public void onClick(final View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
+            /**Opening PDF file by parse link or showing the toast that PDF not found */
             case R.id.btn_link:
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
-                context.startActivity(intent);
+                if (link != null) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+                    context.startActivity(intent);
+                } else {
+                    Toast.makeText(context, "PDF файл не знайдено", Toast.LENGTH_SHORT).show();
+                }
                 break;
+            /**Adding declaration to the favorite list with comment*/
             case R.id.btn_star:
-                final View itemView = LayoutInflater.from(context).inflate(R.layout.dialog_layout, null, false);
-                final AlertDialog.Builder builder = new AlertDialog.Builder(context)
-                        .setView(itemView)
-                        .setPositiveButton("Додати", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                EditText etComment = (EditText) itemView.findViewById(R.id.et_comment);
-                                comment = etComment.getText().toString();
-                                AddDataToList.putData(firstname, lastname, placeOfWork, position, comment);
-                            }
-                        })
-                        .setNegativeButton("Відміна", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.cancel();
-                            }
-                        });
-                builder.create().show();
+                final View btnView = view;
+                final AlertDialog alertDialog = getAlertDialogBuilder(context).create();
+                alertDialog.show();
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        EditText etComment = (EditText) alertDialog.findViewById(R.id.et_comment);
+                        comment = etComment.getText().toString();
+                        CreatingList.putData(person, comment);
+                        alertDialog.cancel();
+                    }
+                });
                 break;
         }
     }

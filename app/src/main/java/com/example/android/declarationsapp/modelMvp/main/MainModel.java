@@ -14,16 +14,16 @@ public class MainModel implements MainContract.Model {
 
     private Callback<Items> myCallback;
 
-    private void initCallback(final onFinishedGettingData onFinishedGettingData){
+    private void initCallback(final onFinishedGettingData onFinishedGettingData) {
         myCallback = new Callback<Items>() {
             @Override
             public void onResponse(Call<Items> call, @NonNull Response<Items> response) {
-                if (response.body()==null){
+                if (response.body() == null) {
                     Log.d("myLogs", "personList = null");
                 } else {
                     onFinishedGettingData.onFinishedSuccess(response.body().getItems());
+                }
             }
-        }
 
             @Override
             public void onFailure(Call<Items> call, Throwable t) {

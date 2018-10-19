@@ -1,11 +1,13 @@
 package com.example.android.declarationsapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -21,14 +23,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private List<Person> personList;
     private List<String> commentList;
+    private boolean itIsFavorites = false;
 
-    public MyAdapter(List<Person> personList){
+    public MyAdapter(List<Person> personList) {
         this.personList = personList;
     }
 
-    public MyAdapter(List<Person> personList, List<String> commentList){
+    public MyAdapter(List<Person> personList, List<String> commentList) {
         this.personList = personList;
         this.commentList = commentList;
+        itIsFavorites = true;
     }
 
 
@@ -42,28 +46,57 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         final Person person = personList.get(position);
-        Log.d("myLogs", "onBind" + person.getFirstname());
 
-        String firstname = person.getFirstname();
-        String lastname = person.getLastname();
-        String placeOfWork = person.getPlaceOfWork();
-        String positionPerson = person.getPosition();
         String link = person.getLinkPDF();
 
+        /**Setting data to the item*/
         holder.tvFirstName.setText(person.getFirstname());
         holder.tvLastName.setText(person.getLastname());
         holder.tvPlaceOfWork.setText(person.getPlaceOfWork());
         holder.tvPosition.setText(person.getPosition());
 
-        if (commentList!=null){
+        if (commentList != null) {
             final String comment = commentList.get(position);
             holder.tvComment.setText(comment);
             holder.textComment.setVisibility(View.VISIBLE);
             holder.tvComment.setVisibility(View.VISIBLE);
         }
+
         holder.btnLinkPdf.setOnClickListener(new MyOnClickListener(holder.itemView.getContext(), link));
 
-        holder.btnStar.setOnClickListener(new MyOnClickListener(holder.itemView.getContext(), firstname, lastname, placeOfWork, positionPerson));
+        holder.btnStar.setOnClickListener(new MyOnClickListener(holder.itemView.getContext(), person));
+
+        /**If it is the favorite list hide button add to favorite*/
+        if (itIsFavorites) {
+            holder.btnStar.setVisibility(View.GONE);
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    /**Deleting item from the favorite list*/
+                    final AlertDialog alertDialog = MyOnClickListener.getAlertDialogBuilder(holder.itemView.getContext()).create();
+                    alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Видалити", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            personList.remove(holder.getAdapterPosition());
+                            commentList.remove(holder.getAdapterPosition());
+                            notifyItemRemoved(holder.getAdapterPosition());
+                        }
+                    });
+                    alertDialog.show();
+                    /**Changing the comment in the item*/
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            EditText etComment = (EditText) alertDialog.findViewById(R.id.et_comment);
+                            String comment = etComment.getText().toString();
+                            holder.tvComment.setText(comment);
+                            alertDialog.cancel();
+                        }
+                    });
+                    return true;
+                }
+            });
+        }
     }
 
     @Override
@@ -71,7 +104,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return personList.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder{
+    class MyViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_firstname)
         TextView tvFirstName;
         @BindView(R.id.tv_lastname)

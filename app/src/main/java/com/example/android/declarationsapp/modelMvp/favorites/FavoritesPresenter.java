@@ -1,7 +1,5 @@
 package com.example.android.declarationsapp.modelMvp.favorites;
 
-import android.content.Intent;
-
 import com.example.android.declarationsapp.data.Person;
 
 import java.util.List;
@@ -11,7 +9,7 @@ public class FavoritesPresenter implements FavoritesContract.Presenter, Favorite
     private FavoritesContract.Model model;
     private FavoritesContract.View view;
 
-     FavoritesPresenter(FavoritesActivity view){
+    FavoritesPresenter(FavoritesActivity view) {
         this.view = view;
         model = new FavoritesModel();
     }
@@ -28,7 +26,7 @@ public class FavoritesPresenter implements FavoritesContract.Presenter, Favorite
 
     @Override
     public void onReturnData(List<Person> personList, List<String> commentList) {
-        if(view!=null){
+        if (view != null) {
             view.setDataToAdapter(personList, commentList);
         }
     }

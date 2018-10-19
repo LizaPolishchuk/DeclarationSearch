@@ -1,21 +1,16 @@
 package com.example.android.declarationsapp.modelMvp.favorites;
 
-import android.arch.persistence.room.Room;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.telecom.Call;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.android.declarationsapp.App;
 import com.example.android.declarationsapp.MyAdapter;
-import com.example.android.declarationsapp.data.Person;
 import com.example.android.declarationsapp.R;
-
+import com.example.android.declarationsapp.data.Person;
 
 import java.util.List;
 
@@ -44,7 +39,7 @@ public class FavoritesActivity extends AppCompatActivity implements FavoritesCon
 
     @Override
     public void setDataToAdapter(List<Person> personList, List<String> commentList) {
-        if(personList.size()==0){
+        if (personList.size() == 0) {
             tvEmptyList.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         } else {

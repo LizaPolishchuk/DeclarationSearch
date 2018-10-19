@@ -1,14 +1,6 @@
 package com.example.android.declarationsapp.data;
 
-import android.arch.persistence.room.Embedded;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
-
-import com.google.gson.annotations.SerializedName;
-
-
-public class Person  {
+public class Person {
     private String id;
     private String firstname;
     private String lastname;
@@ -19,7 +11,7 @@ public class Person  {
 
     public String getId() {
         return id;
-   }
+    }
 
     public void setId(String id) {
         this.id = id;

@@ -1,8 +1,8 @@
 package com.example.android.declarationsapp.modelMvp.main;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -14,18 +14,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.android.declarationsapp.utils.CheckingConnection;
 import com.example.android.declarationsapp.MyAdapter;
-import com.example.android.declarationsapp.data.Person;
 import com.example.android.declarationsapp.R;
+import com.example.android.declarationsapp.data.Person;
 import com.example.android.declarationsapp.modelMvp.favorites.FavoritesActivity;
+import com.example.android.declarationsapp.utils.CheckingConnection;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements MainContract.View{
+public class MainActivity extends AppCompatActivity implements MainContract.View {
 
     static final String TAG = "MainActivity";
     @BindView(R.id.recycler_view_main)
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         presenter = new MainPresenter(this);
 
-        if(!CheckingConnection.hasConnection(this)){
+        if (!CheckingConnection.hasConnection(this)) {
             tvNothingToFind.setText(getString(R.string.no_connection));
             tvNothingToFind.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         }
     }
 
-    public void onClickSearch(View view){
+    public void onClickSearch(View view) {
         query = etSearch.getText().toString();
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void setDataToAdapter(List<Person> personList) {
-        if(personList==null){
+        if (personList == null) {
             tvNothingToFind.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         } else {
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.item_favorites:
                 Intent intent = new Intent(this, FavoritesActivity.class);
                 startActivity(intent);

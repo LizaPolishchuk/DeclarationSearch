@@ -9,7 +9,7 @@ public class MainPresenter implements MainContract.Presenter, MainContract.Model
     private MainContract.Model model;
     private MainContract.View view;
 
-     MainPresenter(MainContract.View view){
+    MainPresenter(MainContract.View view) {
         this.view = view;
         model = new MainModel();
     }
@@ -31,14 +31,14 @@ public class MainPresenter implements MainContract.Presenter, MainContract.Model
 
     @Override
     public void onFinishedSuccess(List<Person> personList) {
-        if (view!=null){
+        if (view != null) {
             view.setDataToAdapter(personList);
         }
     }
 
     @Override
     public void onFailure(Throwable throwable) {
-        if (view!=null){
+        if (view != null) {
             view.makeToastOnFailure(throwable);
         }
     }

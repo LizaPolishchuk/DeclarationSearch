@@ -6,23 +6,29 @@ import java.util.List;
 
 public class MainContract {
 
-    interface Model{
-        interface onFinishedGettingData{
+    interface Model {
+        void getPersonList(onFinishedGettingData onFinishedGettingData, String query);
+
+        void getClonePersonList(onFinishedGettingData onFinishedGettingData, String query);
+
+        interface onFinishedGettingData {
             void onFinishedSuccess(List<Person> personList);
+
             void onFailure(Throwable throwable);
         }
-        void getPersonList(onFinishedGettingData onFinishedGettingData, String query);
-        void getClonePersonList(onFinishedGettingData onFinishedGettingData, String query);
     }
 
-    interface View{
+    interface View {
         void setDataToAdapter(List<Person> personList);
+
         void makeToastOnFailure(Throwable throwable);
     }
 
-    interface Presenter{
+    interface Presenter {
         void getDataFromApi(String query);
+
         void getCloneDataFromApi(String query);
+
         void onDestroy();
     }
 }
