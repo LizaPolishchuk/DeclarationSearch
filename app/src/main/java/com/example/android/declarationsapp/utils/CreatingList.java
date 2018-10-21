@@ -9,6 +9,7 @@ import com.example.android.declarationsapp.data.Person;
 import java.util.ArrayList;
 import java.util.List;
 
+/**Here we also have to add lists to the database, but there was no such action  in my task, so I do not complicate the code*/
 public class CreatingList {
 
     private static List<Person> personList = new ArrayList<>();
@@ -17,10 +18,8 @@ public class CreatingList {
     public static void putData(Person person, String comment) {
         /**If this declaration is already in the favorites don't add it*/
         for (Person pers : personList) {
-            if (pers.getFirstname().equals(person.getFirstname()) &&
-                    pers.getLastname().equals(person.getLastname())
-                    && pers.getPlaceOfWork().equals(person.getPlaceOfWork())) {
-                Toast.makeText(App.getInstance().getApplicationContext(), "Дана декларація вже додана до обраного", Toast.LENGTH_LONG).show();
+            if (pers.getId().equals(person.getId())) {
+                Toast.makeText(App.getInstance().getApplicationContext(), "Дана декларація вже додана до обраного", Toast.LENGTH_SHORT).show();
                 return;
             }
         }

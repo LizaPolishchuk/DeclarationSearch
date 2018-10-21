@@ -69,7 +69,6 @@ public class MyOnClickListener implements View.OnClickListener {
                 break;
             /**Adding declaration to the favorite list with comment*/
             case R.id.btn_star:
-                final View btnView = view;
                 final AlertDialog alertDialog = getAlertDialogBuilder(context).create();
                 alertDialog.show();
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
